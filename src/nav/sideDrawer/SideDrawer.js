@@ -140,11 +140,13 @@ export default function MiniDrawer() {
         }}
       >
         <div className={classes.toolbar}>
+        <p>Navigate</p>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
         <Divider />
+        
         <List>
           {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text}>
@@ -168,14 +170,17 @@ export default function MiniDrawer() {
           </ListItem>
         </List>
         <Divider />
-        {/* <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />} </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List> */}
+        <List>
+          <ListItem button component={Link} to='/my-post'>
+            <ListItemIcon><MyPost/></ListItemIcon>
+            <ListItemText primary='My Posts'/>
+          </ListItem>
+
+          <ListItem button component={Link} to='/create-post'>
+            <ListItemIcon><CreatePost/></ListItemIcon>
+            <ListItemText primary='Create Post'/>
+          </ListItem>
+        </List>
       </Drawer>
       {/* <Home/> */}
       {/* <main className={classes.content}> */}
