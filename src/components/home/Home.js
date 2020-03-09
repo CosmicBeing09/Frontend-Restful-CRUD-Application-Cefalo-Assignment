@@ -14,11 +14,7 @@ class Home extends Component{
             console.log(localStorage.getItem('token'))
             
             }
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
-            <Post/>
+           
            </div>
         );
     }

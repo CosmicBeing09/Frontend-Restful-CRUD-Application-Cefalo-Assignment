@@ -125,7 +125,7 @@ class CreatePost extends Component{
                   </Grid>
                   <Grid item xs={12}>
                   <TextareaAutosize
-                  cols = {48}
+                  cols = {55}
                   rowsMin = {10}
                   aria-label="Body" 
                   placeholder="Write Post Here"
@@ -139,7 +139,6 @@ class CreatePost extends Component{
                 </Grid>
                 
                 <Button
-                  fullWidth
                   variant="contained"
                   color="primary"
                   className={classes.submit}
