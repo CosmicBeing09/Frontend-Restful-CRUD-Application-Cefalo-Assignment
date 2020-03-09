@@ -43,7 +43,6 @@ class CreatePost extends Component{
             "body" : this.state.body
         };
 
-
       await fetch(`http://localhost:8080/post/`+localStorage.getItem('userId'), {
           method: 'POST',
           headers : {
