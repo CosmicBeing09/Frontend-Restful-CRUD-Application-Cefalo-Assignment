@@ -8,7 +8,7 @@ class Home extends Component{
         return(
             <div>
             
-            {console.log("Home Renderd")
+            {console.log(localStorage.getItem('token'))
             }
             <Post/>
             <Post/>

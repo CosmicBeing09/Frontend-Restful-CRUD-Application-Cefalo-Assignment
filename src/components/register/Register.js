@@ -1,30 +1,27 @@
 import React, { Component } from "react";
-
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import swal from 'sweetalert';
+
 class Register extends Component{
    
     constructor(props){
         super(props);
         this.state = {
-            userId : "",
-            name : "",
-            password : ""
+            userId : null,
+            name : null,
+            password : null
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.postData = this.postData.bind(this);
     }
 
       handleChange = event => {
@@ -38,6 +35,7 @@ class Register extends Component{
               "password" : this.state.password
           };
 
+
         await fetch(`http://localhost:8080/user/register`, {
             method: 'POST',
             headers : {
@@ -46,7 +44,7 @@ class Register extends Component{
             },
             body: JSON.stringify(data)
         }).then(res => {console.log(res.status);
-            if(res.status == 200){
+            if(res.status == 201){
                 this.setState({loader : false});
                 swal({
                     title: "Bingoo!",
@@ -57,8 +55,33 @@ class Register extends Component{
                       window.location.replace('/login');
                   });
             }
-        })
+            else if(res.status == 400){
+              this.setState({loader : false});
+              swal({
+                  title: "Opppsss!",
+                  text: "Username already taken",
+                  icon: "warning",
+                  button: "Try again",
+                }).then();
+            }
+            else{
+              swal({
+                title: "Opppsss!",
+                text: "Fill the form correctly",
+                icon: "warning",
+                button: "Ok",
+              }).then();
+            }
+        }).catch(err => {
+          swal({
+            title: "Opppsss!",
+            text: "Check your internet conncetion",
+            icon: "warning",
+            button: "Ok",
+          }).then();
+        });
     }
+
 
     render(){
         const classes = makeStyles(theme => ({
@@ -129,15 +152,10 @@ class Register extends Component{
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    {/* <FormControlLabel
-                      control={<Checkbox value="allowExtraEmails" color="primary" />}
-                      label="I want to receive inspiration, marketing promotions and updates via email."
-                    /> */}
                   </Grid>
                 </Grid>
                 
                 <Button
-                  type="submit"
                   fullWidth
                   variant="contained"
                   color="primary"
