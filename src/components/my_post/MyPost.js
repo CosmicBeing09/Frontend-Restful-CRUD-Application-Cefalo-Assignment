@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
 import Post from '../post/Post';
+import {Redirect} from 'react-router-dom';
+
 class MyPost extends Component{
     constructor(props){
         super(props);
         this.state = {
             posts : []
+
         }
+        this.editPost = this.editPost.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    editPost = (postId) => {
+        console.log(postId);
+       this.props.history.push({
+           pathname : '/edit-post',
+           state : {id : postId}
+        });
     }
 
    async componentDidMount(){
@@ -38,7 +51,7 @@ class MyPost extends Component{
             <div className="App">
                 {
                 this.state.posts.map(datum => 
-                    <Post post={datum} key={datum.id}/>
+                    <Post editPost={this.editPost} post={datum} key={datum.id}/>
                     )
                 }
             </div>

@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import Card from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 
 class Post extends Component {
 
@@ -22,6 +26,15 @@ class Post extends Component {
                             Published at : {this.props.post.date}
                         </footer>
                     </blockquote>
+                    <Row>
+                     <Col md="auto" style={{marginLeft:'550px'}}>   
+                    <Button style={{marginTop:'20px'}} variant="primary" onClick = {() => this.props.editPost(this.props.post.id)}>Edit Post</Button>
+                    </Col>
+                    <Col md="auto"></Col>
+                    <Col md="auto">
+                    <Button style={{marginTop:'20px'}} variant="danger">Delete</Button>
+                    </Col>
+                    </Row>
                 </Card.Body>
             </Card>
         );
