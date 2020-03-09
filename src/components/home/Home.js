@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Post from '../post/Post';
-
+import Container from '@material-ui/core/Container';
+import 'bootstrap/dist/css/bootstrap.min.css';
 class Home extends Component{
 
 
     render(){
         return(
-            <div>
+            <div className="App">
             
             {
             console.log(localStorage.getItem('userId')),
@@ -18,8 +19,7 @@ class Home extends Component{
             <Post/>
             <Post/>
             <Post/>
-            <div>Login page</div>
-            </div>
+           </div>
         );
     }
 }
