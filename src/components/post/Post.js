@@ -32,7 +32,7 @@ class Post extends Component {
                     </Col>
                     <Col md="auto"></Col>
                     <Col md="auto">
-                    <Button style={{marginTop:'20px'}} variant="danger">Delete</Button>
+                    <Button style={{marginTop:'20px'}} variant="danger" onClick = {() => this.props.deletePost(this.props.post.id)}>Delete</Button>
                     </Col>
                     </Row>
                 </Card.Body>

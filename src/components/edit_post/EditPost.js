@@ -79,7 +79,7 @@ class EditPost extends Component{
                 text: "Login successful!!!",
                 icon: "success",
                 button: "Ok",
-              }).then(() => window.location.replace('/create-post'));
+              }).then(() => window.location.replace('/my-post'));
         }
 
         else{
