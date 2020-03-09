@@ -30,6 +30,8 @@ class Login extends Component{
       }
 
       async postData(event) {
+
+        localStorage.setItem('userId',this.state.userId); 
         const data = {
             "userId" : this.state.userId,
             "password" : this.state.password
@@ -60,12 +62,13 @@ class Login extends Component{
             text: "Login failed",
             icon: "warning",
             button: "Ok",
-          }).then(() => window.location.replace('/login'));
+          }).then(() => {
+            window.location.replace('/login')});
         }
         return res.json();
         }).then(data => {
-         console.log(data);
-         console.log(data.token);   
+          localStorage.setItem('token',data.token); 
+           
       }).catch(err => {
         swal({
           title: "Opppsss!",

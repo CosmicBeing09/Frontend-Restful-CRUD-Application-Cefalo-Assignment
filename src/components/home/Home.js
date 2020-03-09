@@ -8,7 +8,10 @@ class Home extends Component{
         return(
             <div>
             
-            {console.log(localStorage.getItem('token'))
+            {
+            console.log(localStorage.getItem('userId')),
+            console.log(localStorage.getItem('token'))
+            
             }
             <Post/>
             <Post/>
