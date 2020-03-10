@@ -9,8 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import swal from 'sweetalert';
-
-
+import Card from 'react-bootstrap/Card';
 
 class EditPost extends Component{
     constructor(props){
@@ -73,10 +72,10 @@ class EditPost extends Component{
           },
           body: JSON.stringify(data)
       }).then(res => {  
-        if(res.status == 200){
+        if(res.status === 200){
             swal({
                 title: "Bingoo!",
-                text: "Login successful!!!",
+                text: "Story Updated Successfully!!!",
                 icon: "success",
                 button: "Ok",
               }).then(() => window.location.replace('/my-post'));
@@ -125,14 +124,15 @@ class EditPost extends Component{
         }
         else{
         return(
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs" style={{marginTop:'80px'}}>
             <CssBaseline />
+            <Card style={{padding:'50px', width : '500px'}}>
             <div className={classes.paper}>
-              <Typography component="h1" variant="h5">
-                Create Post
+              <Typography component="h1" variant="h5" style={{color:'#790c5a'}}>
+                Edit Story
               </Typography>
              
-              <form className={classes.form} noValidate>
+              <form className={classes.form} noValidate style={{marginTop:'30px'}}>
                 <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <TextField
@@ -165,7 +165,7 @@ class EditPost extends Component{
                 
                 <Button
                   variant="contained"
-                  color="primary"
+                  color="secondary"
                   className={classes.submit}
                   onClick = {this.postData}
                 >
@@ -175,6 +175,7 @@ class EditPost extends Component{
             </div>
             <Box mt={5}>
             </Box>
+            </Card>
           </Container>
         );
         }

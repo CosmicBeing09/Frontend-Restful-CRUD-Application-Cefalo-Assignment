@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import swal from 'sweetalert';
+import Card from 'react-bootstrap/Card';
 
 class Register extends Component{
    
@@ -44,7 +45,7 @@ class Register extends Component{
             },
             body: JSON.stringify(data)
         }).then(res => {console.log(res.status);
-            if(res.status == 201){
+            if(res.status === 201){
                 this.setState({loader : false});
                 swal({
                     title: "Bingoo!",
@@ -55,7 +56,7 @@ class Register extends Component{
                       window.location.replace('/login');
                   });
             }
-            else if(res.status == 400){
+            else if(res.status === 400){
               this.setState({loader : false});
               swal({
                   title: "Opppsss!",
@@ -105,14 +106,15 @@ class Register extends Component{
           }));
 
         return(
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs" style={{marginTop:'80px'}}>
             <CssBaseline />
+            <Card style={{padding:'50px'}}>
             <div className={classes.paper}>
-              <Typography component="h1" variant="h5">
+              <Typography component="h1" variant="h5"  style={{color:'#790c5a'}}>
                 Sign up
               </Typography>
              
-              <form className={classes.form} noValidate>
+              <form className={classes.form} noValidate style={{marginTop:'30px'}}>
                 <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <TextField
@@ -156,16 +158,16 @@ class Register extends Component{
                 </Grid>
                 
                 <Button
-                  fullWidth
+                  style={{marginTop:'20px'}}
                   variant="contained"
-                  color="primary"
+                  color="secondary"
                   className={classes.submit}
                   onClick = {this.postData}
                 >
                   Sign Up
                 </Button>
-                <Grid container justify="flex-end">
-                  <Grid item>
+                <Grid style={{marginTop:'20px'}}>
+                  <Grid item style={{marginTop:'30px'}}>
                     <Link href="/login" variant="body2">
                       Already have an account? Sign in
                     </Link>
@@ -175,6 +177,7 @@ class Register extends Component{
             </div>
             <Box mt={5}>
             </Box>
+            </Card>
           </Container>
         );
     }

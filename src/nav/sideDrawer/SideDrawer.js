@@ -20,10 +20,8 @@ import Register from '@material-ui/icons/HowToReg';
 import MyPost from '@material-ui/icons/Assignment';
 import CreatePost from '@material-ui/icons/PostAdd'; 
 import Logout from '@material-ui/icons/ExitToApp'; 
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import Home from '@material-ui/icons/Home';
-import { Link,LinkProps } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import swal from 'sweetalert';
 const drawerWidth = 240;
 
@@ -125,7 +123,7 @@ export default function MiniDrawer() {
 
 
   var isLogged = false;
-  if(window.localStorage.getItem("token")===null)
+  if(window.localStorage.getItem("token") === null)
     isLogged = false;
   else 
     isLogged=true;
@@ -170,13 +168,13 @@ export default function MiniDrawer() {
         }}
       >
         <div className={classes.toolbar}>
-        <p>Navigate</p>
+          <Typography variant="h6" noWrap >Navigate</Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
         <Divider />
-        
+        <Divider />
         <List>
           <ListItem button component={Link} to='/'>
             <ListItemIcon><Home/></ListItemIcon>
@@ -197,6 +195,7 @@ export default function MiniDrawer() {
 
        {isLogged? (
          <div>
+        <Divider />
         <Divider />
         <List>
           <ListItem button component={Link} to='/my-post'>

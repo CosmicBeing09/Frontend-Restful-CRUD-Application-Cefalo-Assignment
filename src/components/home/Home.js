@@ -133,9 +133,11 @@ class Home extends Component{
          </Col>
          <Col>
          <div className="def-number-input number-input">
+
           <button onClick={this.decrease} className="minus"></button>
           <input className="quantity" name="quantity" value={this.state.pageSize} onChange={()=> console.log('change')}
           type="number" />
+
           <button onClick={this.increase} className="plus"></button>
         </div>
         </Col>
