@@ -55,7 +55,7 @@ class CreatePost extends Component{
         if(res.status == 201){
             swal({
                 title: "Bingoo!",
-                text: "Login successful!!!",
+                text: "Story created successfully!!!",
                 icon: "success",
                 button: "Ok",
               }).then(() => window.location.replace('/create-post'));

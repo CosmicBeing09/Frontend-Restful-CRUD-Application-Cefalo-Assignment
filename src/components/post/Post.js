@@ -23,7 +23,7 @@ class Post extends Component {
                         </p>
                         <footer className="blockquote-footer">
                             Author: <cite title="Source Title">{this.props.post.user.name}</cite><br></br>
-                            Published at : {this.props.post.date}
+                            Published at : {this.props.post.date.split("T")[0]}
                         </footer>
                     </blockquote>
                     <Row>
