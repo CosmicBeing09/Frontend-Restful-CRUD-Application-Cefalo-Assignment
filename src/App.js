@@ -1,6 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Route, Link, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import './App.css';
 import SideDrawer from './nav/sideDrawer/SideDrawer';
 import Home from './components/home/Home';

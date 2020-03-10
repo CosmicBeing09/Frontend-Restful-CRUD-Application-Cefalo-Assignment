@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import swal from 'sweetalert';
+import Card from 'react-bootstrap/Card';
 
 class CreatePost extends Component{
 
@@ -52,10 +53,10 @@ class CreatePost extends Component{
           },
           body: JSON.stringify(data)
       }).then(res => {  
-        if(res.status == 201){
+        if(res.status === 201){
             swal({
                 title: "Bingoo!",
-                text: "Story created successfully!!!",
+                text: "Story created!!!",
                 icon: "success",
                 button: "Ok",
               }).then(() => window.location.replace('/create-post'));
@@ -101,14 +102,15 @@ class CreatePost extends Component{
           }));
 
         return(
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs" style={{marginTop:'80px'}}>
             <CssBaseline />
+            <Card style={{padding:'50px',width : '500px'}}>
             <div className={classes.paper}>
-              <Typography component="h1" variant="h5">
-                Create Post
+              <Typography component="h1" variant="h5" style={{color:'#790c5a'}}>
+                Create Story
               </Typography>
              
-              <form className={classes.form} noValidate>
+              <form className={classes.form} noValidate  style={{marginTop:'30px'}}>
                 <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <TextField
@@ -127,7 +129,7 @@ class CreatePost extends Component{
                   cols = {55}
                   rowsMin = {10}
                   aria-label="Body" 
-                  placeholder="Write Post Here"
+                  placeholder="Write Your Story Here"
                   id = "body"
                   name = "body"
                   onChange = {this.handleChange} 
@@ -139,7 +141,7 @@ class CreatePost extends Component{
                 
                 <Button
                   variant="contained"
-                  color="primary"
+                  color="secondary"
                   className={classes.submit}
                   onClick = {this.postData}
                 >
@@ -149,6 +151,7 @@ class CreatePost extends Component{
             </div>
             <Box mt={5}>
             </Box>
+            </Card>
           </Container>
         );
     }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
 import Post from '../post/Post';
-import {Redirect} from 'react-router-dom';
 
 class MyPost extends Component{
     constructor(props){
@@ -33,7 +32,7 @@ class MyPost extends Component{
                        'Authorization' : 'Bearer '+ localStorage.getItem('token')
                     }
                 }).then(res => {  
-                  if(res.status == 200){
+                  if(res.status === 200){
                       swal({
                           title: "Bingoo!",
                           text: "Login successful!!!",

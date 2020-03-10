@@ -7,18 +7,14 @@ import Col from 'react-bootstrap/Col';
 
 class Post extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         var home = this.props.home;
         return (
-            <Card style={{ margin: '20px', marginLeft: '100px', marginRight: '50px' }}>
-                <Card.Header>{this.props.post.title}</Card.Header>
-                <Card.Body>
+            <Card style={{ margin: '20px', marginLeft: '300px', marginRight: '200px',marginTop:'24px' }}>
+                <Card.Header style={{padding : '24px',backgroundColor:'#beebe9'}}><h5><b>{this.props.post.title}</b></h5></Card.Header>
+                <Card.Body style={{marginLeft:'100px',marginRight:'100px', padding:'32px'}}>
                     <blockquote className="blockquote mb-0">
-                        <p>
+                        <p style={{textAlign : 'left'}}>
 
                             {this.props.post.body}
                         </p>
@@ -29,7 +25,7 @@ class Post extends Component {
                     </blockquote>
                     {home ? (<div></div>) : (
                         <Row>
-                        <Col md="auto" style={{ marginLeft: '550px' }}>
+                        <Col md="auto" style={{ marginLeft: '320px' }}>
                             <Button style={{ marginTop: '20px' }} variant="primary" onClick={() => this.props.editPost(this.props.post.id)}>Edit Post</Button>
                         </Col>
                         <Col md="auto"></Col>
