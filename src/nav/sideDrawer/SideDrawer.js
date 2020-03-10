@@ -19,10 +19,12 @@ import Login from '@material-ui/icons/LockOpen';
 import Register from '@material-ui/icons/HowToReg';
 import MyPost from '@material-ui/icons/Assignment';
 import CreatePost from '@material-ui/icons/PostAdd'; 
+import Logout from '@material-ui/icons/ExitToApp'; 
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Home from '@material-ui/icons/Home';
 import { Link,LinkProps } from 'react-router-dom';
+import swal from 'sweetalert';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -86,6 +88,29 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const logout = () =>{
+  swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this post!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+      window.localStorage.clear();
+      swal({
+        title: "Bingoo!",
+        text: "Logged out!!!",
+        icon: "success",
+        button: "Ok",
+      }).then(() => window.location.replace('/'));
+    } else {
+      swal("Not logged out!");
+    }
+  });
+}
+
 export default function MiniDrawer() {
   const classes = useStyles();
   const theme = useTheme();
@@ -99,6 +124,12 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+
+  var isLogged = false;
+  if(window.localStorage.getItem("token")===null)
+    isLogged = false;
+  else 
+    isLogged=true;
 
   return (
     <div className={classes.root}>
@@ -148,12 +179,6 @@ export default function MiniDrawer() {
         <Divider />
         
         <List>
-          {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))} */}
           <ListItem button component={Link} to='/'>
             <ListItemIcon><Home/></ListItemIcon>
             <ListItemText primary='Home'/>
@@ -169,6 +194,10 @@ export default function MiniDrawer() {
             <ListItemText primary='Register'/>
           </ListItem>
         </List>
+
+
+       {isLogged? (
+         <div>
         <Divider />
         <List>
           <ListItem button component={Link} to='/my-post'>
@@ -181,34 +210,17 @@ export default function MiniDrawer() {
             <ListItemText primary='Create Post'/>
           </ListItem>
         </List>
+        <ListItem button onClick = {logout}>
+            <ListItemIcon><Logout/></ListItemIcon>
+            <ListItemText primary='Logout'/>
+          </ListItem>
+        <Divider />
+
+        </div>
+       ):(<div></div>)
+}
       </Drawer>
-      {/* <Home/> */}
-      {/* <main className={classes.content}> */}
         <div className={classes.toolbar} />
-        {/* <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography> */}
-      {/* </main> */}
     </div>
-  );
+  )
 }
