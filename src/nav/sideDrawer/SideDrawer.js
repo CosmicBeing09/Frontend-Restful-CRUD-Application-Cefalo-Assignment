@@ -132,6 +132,7 @@ export default function MiniDrawer() {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+         style={{backgroundColor:'#510619'}}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -155,7 +156,7 @@ export default function MiniDrawer() {
         </Toolbar>
       </AppBar>
       <Drawer
-        variant="permanent"
+      variant="permanent"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open,
@@ -167,14 +168,19 @@ export default function MiniDrawer() {
           }),
         }}
       >
+        <div style={{backgroundColor : '#cccccc'}}>
         <div className={classes.toolbar}>
           <Typography variant="h6" noWrap >Navigate</Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
+        </div>
+
         <Divider />
         <Divider />
+
+        <div>
         <List>
           <ListItem button component={Link} to='/'>
             <ListItemIcon><Home/></ListItemIcon>
@@ -192,7 +198,7 @@ export default function MiniDrawer() {
           </ListItem>
         </List>
 
-
+        </div>
        {isLogged? (
          <div>
         <Divider />
@@ -208,12 +214,12 @@ export default function MiniDrawer() {
             <ListItemText primary='Create Post'/>
           </ListItem>
         </List>
+        <Divider/>
+        <Divider />
         <ListItem button onClick = {logout}>
             <ListItemIcon><Logout/></ListItemIcon>
             <ListItemText primary='Logout'/>
-          </ListItem>
-        <Divider />
-
+        </ListItem>
         </div>
        ):(<div></div>)
 }
