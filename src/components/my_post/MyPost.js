@@ -105,6 +105,7 @@ class MyPost extends Component{
                           deletePost = {this.deletePost}
                           post={datum} 
                           key={datum.id}
+                          home = {false}
                           />
                     )
                 }
