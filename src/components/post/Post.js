@@ -10,8 +10,8 @@ class Post extends Component {
     render() {
         var home = this.props.home;
         return (
-            <Card style={{ margin: '20px', marginLeft: '300px', marginRight: '200px',marginTop:'24px' }}>
-                <Card.Header style={{padding : '24px',backgroundColor:'#beebe9'}}><h5><b>{this.props.post.title}</b></h5></Card.Header>
+            <Card style={{ margin: '20px', marginLeft: '300px', marginRight: '200px',marginTop:'24px', backgroundColor:'#eeeeee' }}>
+                <Card.Header style={{padding : '24px',backgroundColor:'#cccccc'}}><h5><b>{this.props.post.title}</b></h5></Card.Header>
                 <Card.Body style={{marginLeft:'100px',marginRight:'100px', padding:'32px'}}>
                     <blockquote className="blockquote mb-0">
                         <p style={{textAlign : 'left'}}>
