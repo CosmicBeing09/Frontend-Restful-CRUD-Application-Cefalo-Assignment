@@ -27,11 +27,14 @@ class CreatePost extends Component{
     }
 
     componentDidMount(){
-        var token = localStorage.getItem('token');
-        var userId = localStorage.getItem('userId');
-
-        this.setState({token});
-        this.setState({userId});
+       if(localStorage.getItem('token') === null)
+       swal({
+        title: "Oppss!",
+        text: "You are not logged in!!!",
+        icon: "warning",
+        button: "Ok",
+      }).then(() => { 
+        window.location.replace('/login')});
     }
 
     handleChange = event => {

@@ -25,11 +25,13 @@ class Post extends Component {
                     </blockquote>
                     {home ? (<div></div>) : (
                         <Row>
-                        <Col md="auto" style={{ marginLeft: '320px' }}>
+                            <Col xs lg="2"></Col>
+                            <Col xs lg="2"></Col>
+                        <Col xs lg="2">
                             <Button style={{ marginTop: '20px' }} variant="primary" onClick={() => this.props.editPost(this.props.post.id)}>Edit Post</Button>
                         </Col>
-                        <Col md="auto"></Col>
-                        <Col md="auto">
+                        
+                        <Col xs lg="2">
                             <Button style={{ marginTop: '20px' }} variant="danger" onClick={() => this.props.deletePost(this.props.post.id)}>Delete</Button>
                         </Col>
                     </Row>

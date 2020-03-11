@@ -34,8 +34,8 @@ class MyPost extends Component{
                 }).then(res => {  
                   if(res.status === 200){
                       swal({
-                          title: "Bingoo!",
-                          text: "Login successful!!!",
+                          title: "Done!",
+                          text: "Story Deleted!!!",
                           icon: "success",
                           button: "Ok",
                         }).then(() => window.location.replace('/my-post'));
@@ -91,7 +91,7 @@ class MyPost extends Component{
             text: "Seems like you are not logged in!!!",
             icon: "warning",
             button: "Ok",
-          }).then(window.location.replace('/'));
+          }).then(() => window.location.replace('/'));
     })
     }
 

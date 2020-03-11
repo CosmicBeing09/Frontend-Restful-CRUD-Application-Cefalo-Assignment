@@ -151,7 +151,7 @@ class Login extends Component{
                   className={classes.submit}
                   onClick = {this.postData}
                 >
-                  Sign Up
+                  Sign In
                 </Button >
                 <Grid container style={{marginLeft:'50px'}}>
                   <Grid item style={{marginTop:'30px'}}>
