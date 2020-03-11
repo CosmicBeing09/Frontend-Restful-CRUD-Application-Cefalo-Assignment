@@ -25,7 +25,9 @@ class EditPost extends Component{
  
 
    async componentDidMount(){
-        await fetch(`http://localhost:8080/post/`+this.props.location.state.id,{
+  
+        try {
+          await fetch(`http://localhost:8080/post/`+this.props.location.state.id,{
             headers : {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -48,8 +50,17 @@ class EditPost extends Component{
                 button: "Ok",
               }).then(window.location.replace('/login'));
         })
-
-        this.setState({isLoading:false});
+        } catch (error) {
+          swal({
+            title: "Oppsss!",
+            text: "You are not logged in!!!",
+            icon: "warning",
+            button: "Ok",
+          }).then(() => { 
+            window.location.replace('/login')});
+        }
+       this.setState({isLoading : false});
+      
     }
 
     handleChange = event => {
