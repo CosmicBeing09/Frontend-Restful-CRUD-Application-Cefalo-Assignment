@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import swal from 'sweetalert';
 import Card from 'react-bootstrap/Card';
+import {SERVER} from '../../config/config';
 
 class CreatePost extends Component{
 
@@ -47,7 +48,7 @@ class CreatePost extends Component{
             "body" : this.state.body
         };
 
-      await fetch(`http://localhost:8080/post/`+localStorage.getItem('userId'), {
+      await fetch(`${SERVER}`+`/post/`+localStorage.getItem('userId'), {
           method: 'POST',
           headers : {
               'Content-Type': 'application/json',
@@ -96,7 +97,7 @@ class CreatePost extends Component{
               backgroundColor: theme.palette.secondary.main,
             },
             form: {
-              width: '100%', // Fix IE 11 issue.
+              width: '100%',
               marginTop: theme.spacing(3),
             },
             submit: {

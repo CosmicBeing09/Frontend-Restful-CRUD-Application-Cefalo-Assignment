@@ -23,6 +23,7 @@ function App() {
        <Route path = "/my-post" component={MyPost}/>
        <Route path = "/create-post" component={CreatePost}/>
        <Route path = "/edit-post" component={EditPost}/>
+       <Route component={Home}/>
      </Switch>
      </BrowserRouter>
      

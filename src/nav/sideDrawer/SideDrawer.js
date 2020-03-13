@@ -102,8 +102,6 @@ const logout = () =>{
         icon: "success",
         button: "Ok",
       }).then(() => window.location.replace('/'));
-    } else {
-      swal("Not logged out!");
     }
   });
 }

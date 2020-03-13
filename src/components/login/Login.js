@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import swal from 'sweetalert';
 import Card from 'react-bootstrap/Card';
+import {SERVER} from '../../config/config';
 
 class Login extends Component{
 
@@ -38,7 +39,7 @@ class Login extends Component{
         };
 
 
-      await fetch(`http://localhost:8080/user/authenticate`, {
+      await fetch(`${SERVER}`+`/user/authenticate`, {
           method: 'POST',
           headers : {
               'Content-Type': 'application/json',

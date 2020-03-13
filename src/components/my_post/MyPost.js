@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
 import Post from '../post/Post';
+import {SERVER} from '../../config/config';
 
 class MyPost extends Component{
     constructor(props){
@@ -24,7 +25,7 @@ class MyPost extends Component{
           .then((willDelete) => {
             if (willDelete) {
                 
-             fetch(`http://localhost:8080/post/`+postId, {
+             fetch(`${SERVER}`+`/post/`+postId, {
                     method: 'DELETE',
                     headers : {
                         'Content-Type': 'application/json',
@@ -72,7 +73,7 @@ class MyPost extends Component{
     }
 
    async componentDidMount(){
-    await fetch(`http://localhost:8080/user-posts/`+localStorage.getItem('userId'),{
+    await fetch(`${SERVER}`+`/user-posts/`+localStorage.getItem('userId'),{
         headers : {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -91,7 +92,7 @@ class MyPost extends Component{
             text: "Seems like you are not logged in!!!",
             icon: "warning",
             button: "Ok",
-          }).then(() => window.location.replace('/'));
+          }).then(() => window.location.replace('/login'));
     })
     }
 
