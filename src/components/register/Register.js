@@ -10,6 +10,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import swal from 'sweetalert';
 import Card from 'react-bootstrap/Card';
+import {SERVER} from '../../config/config';
+
 
 class Register extends Component{
    
@@ -37,7 +39,7 @@ class Register extends Component{
           };
 
 
-        await fetch(`http://localhost:8080/user/register`, {
+        await fetch(`${SERVER}`+`/user/register`, {
             method: 'POST',
             headers : {
                 'Content-Type': 'application/json',
@@ -97,7 +99,7 @@ class Register extends Component{
               backgroundColor: theme.palette.secondary.main,
             },
             form: {
-              width: '100%', // Fix IE 11 issue.
+              width: '100%',
               marginTop: theme.spacing(3),
             },
             submit: {

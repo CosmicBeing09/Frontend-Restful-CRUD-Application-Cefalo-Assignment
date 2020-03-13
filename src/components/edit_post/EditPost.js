@@ -10,6 +10,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import swal from 'sweetalert';
 import Card from 'react-bootstrap/Card';
+import {SERVER} from '../../config/config';
+
 
 class EditPost extends Component{
     constructor(props){
@@ -27,7 +29,7 @@ class EditPost extends Component{
    async componentDidMount(){
   
         try {
-          await fetch(`http://localhost:8080/post/`+this.props.location.state.id,{
+          await fetch(`${SERVER}`+`/post/`+this.props.location.state.id,{
             headers : {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -74,7 +76,7 @@ class EditPost extends Component{
             "body" : this.state.body
         };
 
-      await fetch(`http://localhost:8080/post`, {
+      await fetch(`${SERVER}`+`/post`, {
           method: 'PUT',
           headers : {
               'Content-Type': 'application/json',
@@ -123,7 +125,7 @@ class EditPost extends Component{
               backgroundColor: theme.palette.secondary.main,
             },
             form: {
-              width: '100%', // Fix IE 11 issue.
+              width: '100%',
               marginTop: theme.spacing(3),
             },
             submit: {
