@@ -14,9 +14,7 @@ class Post extends Component {
                 <Card.Header style={{padding : '24px',backgroundColor:'#cccccc'}}><h5><b>{this.props.post.title}</b></h5></Card.Header>
                 <Card.Body style={{marginLeft:'100px',marginRight:'100px', padding:'32px'}}>
                     <blockquote className="blockquote mb-0">
-                        <p style={{textAlign : 'left'}}>
-
-                            {this.props.post.body}
+                        <p style={{textAlign : 'left'}} dangerouslySetInnerHTML={{ __html: this.props.post.body }}>
                         </p>
                         <footer className="blockquote-footer">
                             Author: <cite title="Source Title">{this.props.post.user.name}</cite><br></br>
