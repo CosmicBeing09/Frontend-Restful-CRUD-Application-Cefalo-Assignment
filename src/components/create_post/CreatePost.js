@@ -11,6 +11,33 @@ import Container from '@material-ui/core/Container';
 import swal from 'sweetalert';
 import Card from 'react-bootstrap/Card';
 import {SERVER} from '../../config/config';
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import MyUploadAdapter from './ImageUploadAdapter';
+
+
+function MinHeightPlugin(editor) {
+  this.editor = editor;
+}
+
+MinHeightPlugin.prototype.init = function() {
+  this.editor.ui.view.editable.extendTemplate({
+    attributes: {
+      style: {
+        minHeight: '300px'
+      }
+    }
+  });
+};
+ClassicEditor.builtinPlugins.push(MinHeightPlugin);
+ClassicEditor
+  .create( document.querySelector( '#editor1' ) )
+  .then( editor => {
+    // console.log( editor );
+  })
+  .catch( error => {
+    console.error( error );
+  });
 
 class CreatePost extends Component{
 
@@ -129,7 +156,27 @@ class CreatePost extends Component{
                     />
                   </Grid>
                   <Grid item xs={12}>
-                  <TextareaAutosize
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data="<p>Start here...!</p>"
+                    onInit={editor => {
+                        editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+                            return new MyUploadAdapter(loader, `${SERVER}`+`/uploadFile`);
+                        };
+                        console.log('Editor is ready to use!', editor);
+                    }}
+                    onChange={(event, editor) => {
+                        const body = editor.getData();
+                        this.setState({ body });
+                    }}
+                    onBlur={(event, editor) => {
+                        console.log('Blur.', editor);
+                    }}
+                    onFocus={(event, editor) => {
+                        console.log('Focus.', editor);
+                    }}
+                />
+                  {/* <TextareaAutosize
                   cols = {55}
                   rowsMin = {10}
                   aria-label="Body" 
@@ -137,7 +184,7 @@ class CreatePost extends Component{
                   id = "body"
                   name = "body"
                   onChange = {this.handleChange} 
-                  />
+                  /> */}
                   </Grid>
                   <Grid item xs={12}>
                   </Grid>
