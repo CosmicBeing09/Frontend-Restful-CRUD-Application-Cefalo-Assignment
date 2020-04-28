@@ -22,6 +22,13 @@ class Post extends Component {
                         </footer>
                     </blockquote>
                     {home ? (<div></div>) : (
+                        <div>
+                            <div style={{marginTop : '7px'}}>
+                            {this.props.post.isDrafted? (<div>Drafted</div>):(<div></div>)}
+                            <div>
+                            {this.props.post.isPublished? (<p>Published</p>):(<p>Not Published</p>)}
+                            </div>
+                            </div>
                         <Row>
                             <Col xs lg="2"></Col>
                             <Col xs lg="2"></Col>
@@ -33,6 +40,7 @@ class Post extends Component {
                             <Button style={{ marginTop: '20px' }} variant="danger" onClick={() => this.props.deletePost(this.props.post.id)}>Delete</Button>
                         </Col>
                     </Row>
+                    </div>
                     )}
 
                 </Card.Body>
