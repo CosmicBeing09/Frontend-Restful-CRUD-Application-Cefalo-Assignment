@@ -11,6 +11,7 @@ import { SERVER } from '../../config/config';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
+import translate from '../../i18n/translate';
 
 class Home extends Component {
 
@@ -180,7 +181,7 @@ class Home extends Component {
                             <TextField 
                                 id="standard-secondary"
                                 name = "searchText"
-                                label="Search Story"
+                                label={translate('search')}
                                 color="secondary"
                                 onChange = {this.handleSearchBarChange}
                             />

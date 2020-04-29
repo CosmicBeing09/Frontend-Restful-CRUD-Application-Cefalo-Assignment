@@ -23,6 +23,7 @@ import Logout from '@material-ui/icons/ExitToApp';
 import Home from '@material-ui/icons/Home';
 import { Link} from 'react-router-dom';
 import swal from 'sweetalert';
+import translate from '../../i18n/translate';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -168,7 +169,7 @@ export default function MiniDrawer() {
       >
         <div style={{backgroundColor : '#cccccc'}}>
         <div className={classes.toolbar}>
-          <Typography variant="h6" noWrap >Navigate</Typography>
+          <Typography variant="h6" noWrap >{translate('navigate')}</Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
@@ -182,17 +183,17 @@ export default function MiniDrawer() {
         <List>
           <ListItem button component={Link} to='/'>
             <ListItemIcon><Home/></ListItemIcon>
-            <ListItemText primary='Home'/>
+            <ListItemText primary={translate('home')}/>
           </ListItem>
 
           <ListItem button component={Link} to='/login'>
             <ListItemIcon><Login/></ListItemIcon>
-            <ListItemText primary='Login'/>
+            <ListItemText primary={translate('login')}/>
           </ListItem>
 
           <ListItem button component={Link} to='/register'>
             <ListItemIcon><Register/></ListItemIcon>
-            <ListItemText primary='Register'/>
+            <ListItemText primary={translate('register')}/>
           </ListItem>
         </List>
 
@@ -204,19 +205,19 @@ export default function MiniDrawer() {
         <List>
           <ListItem button component={Link} to='/my-post'>
             <ListItemIcon><MyPost/></ListItemIcon>
-            <ListItemText primary='My Posts'/>
+            <ListItemText primary={translate('myPosts')}/>
           </ListItem>
 
           <ListItem button component={Link} to='/create-post'>
             <ListItemIcon><CreatePost/></ListItemIcon>
-            <ListItemText primary='Create Post'/>
+            <ListItemText primary={translate('createPost')}/>
           </ListItem>
         </List>
         <Divider/>
         <Divider />
         <ListItem button onClick = {logout}>
             <ListItemIcon><Logout/></ListItemIcon>
-            <ListItemText primary='Logout'/>
+            <ListItemText primary={translate('createPost')}/>
         </ListItem>
         </div>
        ):(<div></div>)

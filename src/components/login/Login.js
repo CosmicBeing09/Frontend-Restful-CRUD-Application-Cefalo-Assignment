@@ -11,6 +11,7 @@ import Container from '@material-ui/core/Container';
 import swal from 'sweetalert';
 import Card from 'react-bootstrap/Card';
 import {SERVER} from '../../config/config';
+import translate from '../../i18n/translate';
 
 class Login extends Component{
 
@@ -111,7 +112,7 @@ class Login extends Component{
             <Card style={{padding:'50px'}}>
             <div className={classes.paper}>
               <Typography component="h1" variant="h5" style={{color:'#790c5a'}}>
-                Sign In
+              {translate('signIn')}
               </Typography>
              
               <form className={classes.form} noValidate style={{marginTop:'30px'}}>
@@ -122,7 +123,7 @@ class Login extends Component{
                       required
                       fullWidth
                       id="userId"
-                      label="UserId"
+                      label={translate('userId')}
                       name="userId"
                       autoComplete="userId"
                       onChange={this.handleChange}
@@ -134,7 +135,7 @@ class Login extends Component{
                       required
                       fullWidth
                       name="password"
-                      label="Password"
+                      label={translate('password')}
                       type="password"
                       id="password"
                       autoComplete="current-password"
@@ -152,12 +153,14 @@ class Login extends Component{
                   className={classes.submit}
                   onClick = {this.postData}
                 >
-                  Sign In
+                  {translate('login')}
+                  {/* Sign In */}
                 </Button >
                 <Grid container style={{marginLeft:'50px'}}>
                   <Grid item style={{marginTop:'30px'}}>
                     <Link href="/register" variant="body2" >
-                      Don't have an account? Register
+                      {/* Don't have an account? Register */}
+                      {translate('regURL')}
                     </Link>
                   </Grid>
                 </Grid>

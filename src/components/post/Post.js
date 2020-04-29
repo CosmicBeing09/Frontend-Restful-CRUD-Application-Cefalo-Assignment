@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
+import translate from '../../i18n/translate';
 
 class Post extends Component {
 
@@ -33,11 +33,11 @@ class Post extends Component {
                             <Col xs lg="2"></Col>
                             <Col xs lg="2"></Col>
                         <Col xs lg="2">
-                            <Button style={{ marginTop: '20px' }} variant="primary" onClick={() => this.props.editPost(this.props.post.id)}>Edit Post</Button>
+                            <Button style={{ marginTop: '20px' }} variant="primary" onClick={() => this.props.editPost(this.props.post.id)}> {translate('editPost')}</Button>
                         </Col>
                         
                         <Col xs lg="2">
-                            <Button style={{ marginTop: '20px' }} variant="danger" onClick={() => this.props.deletePost(this.props.post.id)}>Delete</Button>
+                            <Button style={{ marginTop: '20px' }} variant="danger" onClick={() => this.props.deletePost(this.props.post.id)}> {translate('delete')}</Button>
                         </Col>
                     </Row>
                     </div>

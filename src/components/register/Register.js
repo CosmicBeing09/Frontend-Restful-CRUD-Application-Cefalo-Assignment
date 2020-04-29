@@ -11,7 +11,7 @@ import Container from '@material-ui/core/Container';
 import swal from 'sweetalert';
 import Card from 'react-bootstrap/Card';
 import {SERVER} from '../../config/config';
-
+import translate from '../../i18n/translate';
 
 class Register extends Component{
    
@@ -51,7 +51,7 @@ class Register extends Component{
                 this.setState({loader : false});
                 swal({
                     title: "Bingoo!",
-                    text: "Your post has been submitted successfully!!!",
+                    text: "Registration Successful!!!",
                     icon: "success",
                     button: "Ok",
                   }).then(next => {
@@ -113,7 +113,8 @@ class Register extends Component{
             <Card style={{padding:'50px'}}>
             <div className={classes.paper}>
               <Typography component="h1" variant="h5"  style={{color:'#790c5a'}}>
-                Sign up
+                {/* Sign up */}
+                {translate('signUp')}
               </Typography>
              
               <form className={classes.form} noValidate style={{marginTop:'30px'}}>
@@ -124,7 +125,7 @@ class Register extends Component{
                       required
                       fullWidth
                       id="userId"
-                      label="UserId"
+                      label={translate('userId')}
                       name="userId"
                       autoComplete="userId"
                       onChange={this.handleChange}
@@ -136,7 +137,7 @@ class Register extends Component{
                       required
                       fullWidth
                       id="name"
-                      label="name"
+                      label={translate('name')}
                       name="name"
                       autoComplete="name"
                       onChange={this.handleChange}
@@ -148,7 +149,7 @@ class Register extends Component{
                       required
                       fullWidth
                       name="password"
-                      label="Password"
+                      label={translate('password')}
                       type="password"
                       id="password"
                       autoComplete="current-password"
@@ -166,12 +167,14 @@ class Register extends Component{
                   className={classes.submit}
                   onClick = {this.postData}
                 >
-                  Sign Up
+                  {/* Sign Up */}
+                  {translate('signUp')}
                 </Button>
                 <Grid style={{marginTop:'20px'}}>
                   <Grid item style={{marginTop:'30px'}}>
                     <Link href="/login" variant="body2">
-                      Already have an account? Sign in
+                      {/* Already have an account? Sign in */}
+                      {translate('loginURL')}
                     </Link>
                   </Grid>
                 </Grid>
