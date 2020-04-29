@@ -18,6 +18,7 @@ import DateTimePicker from 'react-datetime-picker';
 import CheckBox from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import translate from '../../i18n/translate';
 
 function MinHeightPlugin(editor) {
   this.editor = editor;
@@ -163,7 +164,8 @@ class CreatePost extends Component {
         <Card style={{ padding: '50px', width: '500px' }}>
           <div className={classes.paper}>
             <Typography component="h1" variant="h5" style={{ color: '#790c5a' }}>
-              Create Story
+              {/* Create Story */}
+              {translate('createStory')}
               </Typography>
 
             <form className={classes.form} noValidate style={{ marginTop: '30px' }}>
@@ -174,7 +176,7 @@ class CreatePost extends Component {
                     required
                     fullWidth
                     id="title"
-                    label="title"
+                    label= {translate('title')}
                     name="title"
                     autoComplete="title"
                     onChange={this.handleChange}
@@ -183,7 +185,7 @@ class CreatePost extends Component {
                 <Grid item xs={12}>
                   <CKEditor
                     editor={ClassicEditor}
-                    data="<p>Start here...!</p>"
+                    data= '<p>Start here ...</p>'
                     onInit={editor => {
                       editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
                         return new MyUploadAdapter(loader, `${SERVER}` + `/uploadFile`);
@@ -202,7 +204,7 @@ class CreatePost extends Component {
                     }}
                   />
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={6}>
                   <FormControl component="fieldset" className={classes.formControl}>
                     <FormControlLabel
                       control={<CheckBox
@@ -210,7 +212,7 @@ class CreatePost extends Component {
                         checked={this.state.draftChecked}
                         onChange={this.handleDraftCheckBoxChange}
                       />}
-                      label="Save as Draft"
+                      label= {translate('saveAsDraft')}
                     />
                   </FormControl>
                 </Grid>
@@ -219,7 +221,8 @@ class CreatePost extends Component {
                     <Grid item xs={8}>
                       <div style={{textAlign : "left", marginBottom:"10px"}}>
                         <Typography component="h1" style={{ color: '#790c5a' }}>
-                          Select a date to publish
+                          {/* Select a date to publish */}
+                          {translate('selectDate')}
                        </Typography>
                       </div>
                       <DateTimePicker
@@ -239,7 +242,8 @@ class CreatePost extends Component {
                   className={classes.submit}
                   onClick={this.postData}
                 >
-                  Submit
+                  {/* Submit */}
+                  {translate('submit')}
                 </Button>
               </div>
             </form>
