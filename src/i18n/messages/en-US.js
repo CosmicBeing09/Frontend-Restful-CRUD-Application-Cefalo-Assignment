@@ -26,6 +26,7 @@ export default {
        'editPost' : 'Edit Post',
        'editStory' : 'Edit Post',
        'delete' : 'Delete',
-       'update' : 'Update'
+       'update' : 'Update',
+       'selectLang' : 'Select Language'
    }
 }
