@@ -9,11 +9,15 @@ import MyPost from './components/my_post/MyPost';
 import EditPost from './components/edit_post/EditPost';
 import CreatePost from './components/create_post/CreatePost';
 import {I18Provider,LOCALES} from './i18n'; 
+import {connect} from 'react-redux';
 
-function App() {
+function App(props) {
   return (
-    <I18Provider locale={LOCALES.NORWEGIAN}>
+    
     <div className="App">
+      <I18Provider locale={props.lang}>
+    {console.log('App: '  + props.lang)
+    }
      <BrowserRouter>
      <SideDrawer/>
      <Switch>
@@ -26,9 +30,15 @@ function App() {
        <Route component={Home}/>
      </Switch>
      </BrowserRouter> 
+     </I18Provider>
     </div>
-    </I18Provider>
+   
   );
 }
+const mapStateToProps = state => {
+  return {
+    lang : state.language
+  };
+}
 
-export default App;
+export default connect(mapStateToProps)(App);

@@ -24,6 +24,7 @@ import Home from '@material-ui/icons/Home';
 import { Link} from 'react-router-dom';
 import swal from 'sweetalert';
 import translate from '../../i18n/translate';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -107,7 +108,7 @@ const logout = () =>{
   });
 }
 
-export default function MiniDrawer() {
+function MiniDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -212,12 +213,12 @@ export default function MiniDrawer() {
             <ListItemIcon><CreatePost/></ListItemIcon>
             <ListItemText primary={translate('createPost')}/>
           </ListItem>
-        </List>
+        </List>   
         <Divider/>
-        <Divider />
+        <Divider/>
         <ListItem button onClick = {logout}>
             <ListItemIcon><Logout/></ListItemIcon>
-            <ListItemText primary={translate('createPost')}/>
+            <ListItemText primary={translate('logout')}/>
         </ListItem>
         </div>
        ):(<div></div>)
@@ -227,3 +228,6 @@ export default function MiniDrawer() {
     </div>
   )
 }
+
+
+export default MiniDrawer;

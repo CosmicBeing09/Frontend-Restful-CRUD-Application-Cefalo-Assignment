@@ -26,6 +26,7 @@ export default {
        'editPost' : 'Rediger historie',
        'editStory' : 'Rediger historie',
        'delete' : 'Slett',
-       'update' : 'Oppdater'
+       'update' : 'Oppdater',
+       'selectLang' : 'Velg språk'
    }
 }

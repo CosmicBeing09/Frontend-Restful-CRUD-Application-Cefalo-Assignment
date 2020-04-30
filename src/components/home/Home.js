@@ -12,6 +12,12 @@ import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import translate from '../../i18n/translate';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import { connect } from 'react-redux';
 
 class Home extends Component {
 
@@ -20,10 +26,10 @@ class Home extends Component {
 
         this.state = {
             posts: [],
-            searchText : null,
+            searchText: null,
             pageSize: 5,
             totalData: 1,
-            tempPageNo : 0
+            tempPageNo: 0
 
         }
         this.handleChange = this.handleChange.bind(this);
@@ -95,23 +101,59 @@ class Home extends Component {
 
     handleSearchBarChange = event => {
         this.setState({ [event.target.name]: event.target.value });
-        
+
     }
 
-     async handleChange (event, pageNo){
+    async handleChange(event, pageNo) {
 
-        
-        var tempPageNo = pageNo - 1;     
 
-        if(this.state.searchText === null || this.state.searchText === ""){
-            this.setState({searchText : null});
-        fetch(`${SERVER}` + `/posts?pageNo=` + tempPageNo + '&pageSize=' + this.state.pageSize, {
+        var tempPageNo = pageNo - 1;
+
+        if (this.state.searchText === null || this.state.searchText === "") {
+            this.setState({ searchText: null });
+            fetch(`${SERVER}` + `/posts?pageNo=` + tempPageNo + '&pageSize=' + this.state.pageSize, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                }
+            })
+                .then(res => res.json())
+                .then(json => {
+                    let posts = json;
+                    this.setState({ posts });
+                    console.log(posts);
+
+                }).catch(err => {
+                    swal({
+                        title: "Opppsss!",
+                        text: "Check your internet connection!!!",
+                        icon: "warning",
+                        button: "Ok",
+                    }).then(window.location.replace('/'));
+                });
+        }
+        else {
+            this.search(event, tempPageNo);
+        }
+    }
+
+    async search(event, pageNo) {
+
+        console.log(pageNo);
+
+        if (pageNo === undefined) {
+            pageNo = 0;
+        }
+
+        fetch(`${SERVER}` + `/posts/search?pageNo=` + pageNo
+            + '&pageSize=' + this.state.pageSize
+            + '&text=' + this.state.searchText, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             }
-        })
-            .then(res => res.json())
+        }).then(res => res.json())
             .then(json => {
                 let posts = json;
                 this.setState({ posts });
@@ -123,45 +165,9 @@ class Home extends Component {
                     text: "Check your internet connection!!!",
                     icon: "warning",
                     button: "Ok",
-                }).then(window.location.replace('/'));
+                }).then();
             });
-        }
-        else{
-            this.search(event,tempPageNo);
-        }
-    }
-
-    async search(event,pageNo){
-        
-        console.log(pageNo);
-
-        if(pageNo === undefined){
-            pageNo = 0;
-        }
-         
-         fetch(`${SERVER}` + `/posts/search?pageNo=`+ pageNo 
-                                + '&pageSize=' + this.state.pageSize
-                                + '&text=' + this.state.searchText, {
-            method: 'GET',
-            headers : {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
-        }).then(res => res.json())
-        .then(json => {
-            let posts = json;
-            this.setState({ posts });
-            console.log(posts);
-
-        }).catch(err => {
-            swal({
-                title: "Opppsss!",
-                text: "Check your internet connection!!!",
-                icon: "warning",
-                button: "Ok",
-            }).then();
-        });  
-    };  
+    };
 
     render() {
         const classes = makeStyles(theme => ({
@@ -174,43 +180,44 @@ class Home extends Component {
         return (
             <div className="App">
 
-                <div style={{ padding: '20px' }}>
-                    <Row>
-                        <Col xs="4"></Col>
-                        <Col md="auto">
-                            <TextField 
-                                id="standard-secondary"
-                                name = "searchText"
-                                label={translate('search')}
-                                color="secondary"
-                                onChange = {this.handleSearchBarChange}
+                <div style={{ minHeight: '480px' }}>
+                    <div style={{ padding: '20px' }}>
+                        <Row>
+                            <Col xs="4"></Col>
+                            <Col md="auto">
+                                <TextField
+                                    id="standard-secondary"
+                                    name="searchText"
+                                    label={translate('search')}
+                                    color="secondary"
+                                    onChange={this.handleSearchBarChange}
+                                />
+                            </Col>
+                            <Col md="auto">
+                                <IconButton
+                                    className={classes.iconButton}
+                                    aria-label="search"
+                                    onClick={this.search}
+                                >
+                                    <SearchIcon />
+                                </IconButton>
+                            </Col>
+                        </Row>
+                    </div>
+
+                    {
+                        this.state.posts.map(datum =>
+                            <Post editPost={this.editPost}
+                                deletePost={this.deletePost}
+                                post={datum}
+                                key={datum.id}
+                                home={true}
                             />
-                        </Col>
-                        <Col md="auto">
-                            <IconButton 
-                            className={classes.iconButton} 
-                            aria-label="search"
-                            onClick = {this.search}
-                            >
-                                <SearchIcon />
-                            </IconButton>
-                        </Col>
-                    </Row>
+                        )
+                    }
                 </div>
-
-                {
-                    this.state.posts.map(datum =>
-                        <Post editPost={this.editPost}
-                            deletePost={this.deletePost}
-                            post={datum}
-                            key={datum.id}
-                            home={true}
-                        />
-                    )
-                }
-
                 <Row>
-                    <Col style={{ marginLeft: '600px' }}>
+                    <Col style={{ marginLeft: '700px' }}>
                         <Pagination count={Math.floor((this.state.totalData / this.state.pageSize)) + 1} color="secondary" onChange={this.handleChange} />
                     </Col>
                     <Col>
@@ -223,9 +230,30 @@ class Home extends Component {
                         </div>
                     </Col>
                 </Row>
+
+                <FormControl component="fieldset">
+                    <FormLabel component="legend">{translate('selectLang')}</FormLabel>
+                    <RadioGroup row aria-label="lang" name="lang">
+                        <FormControlLabel value="english" control={<Radio onClick={this.props.onLanguageChangeToEnglish} />} label="English" />
+                        <FormControlLabel value="norwegian" control={<Radio onClick={this.props.onLanguageChangeToNorwegian} />} label="Norwegian" />
+                    </RadioGroup>
+                </FormControl>
             </div>
         );
     }
 }
 
-export default Home;
+const mapStateToProps = state => {
+    return {
+        lang: state.language
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onLanguageChangeToNorwegian: () => dispatch({ type: 'nb' }),
+        onLanguageChangeToEnglish: () => dispatch({ type: 'en' })
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
