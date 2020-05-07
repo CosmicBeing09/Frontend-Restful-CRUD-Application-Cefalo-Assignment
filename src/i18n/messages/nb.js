@@ -27,6 +27,9 @@ export default {
        'editStory' : 'Rediger historie',
        'delete' : 'Slett',
        'update' : 'Oppdater',
-       'selectLang' : 'Velg språk'
+       'selectLang' : 'Velg språk',
+       'loginOk' : 'Vellykket innlogging',
+       'loginFail' : 'Innlogging Feilet',
+       'checkCon' : 'Sjekk Internett-tilkoblingen din'
    }
 }

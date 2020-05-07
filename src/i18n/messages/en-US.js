@@ -27,6 +27,9 @@ export default {
        'editStory' : 'Edit Post',
        'delete' : 'Delete',
        'update' : 'Update',
-       'selectLang' : 'Select Language'
+       'selectLang' : 'Select Language',
+       'loginOk' : 'Login Successful',
+       'loginFail' : 'Login Failed',
+       'checkCon' : 'Check Your Internet Connection'
    }
 }

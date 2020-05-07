@@ -17,17 +17,6 @@ const reducer = (state = initialState, action) => {
             }
     }
 
-    // if (action.type === 'nb') {
-    //     return {
-    //         language: LOCALES.NORWEGIAN
-    //     };
-    // }
-
-    // if (action.type === 'en') {
-    //     return {
-    //         language: LOCALES.ENGLISH
-    //     };
-    // }
     return state;
 }
 
