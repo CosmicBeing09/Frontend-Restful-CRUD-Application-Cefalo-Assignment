@@ -16,10 +16,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Login from '@material-ui/icons/LockOpen';
+import MostTalked from '@material-ui/icons/Group';
 import Register from '@material-ui/icons/HowToReg';
 import MyPost from '@material-ui/icons/Assignment';
 import CreatePost from '@material-ui/icons/PostAdd'; 
 import Logout from '@material-ui/icons/ExitToApp'; 
+import EditorsPostIcon from '@material-ui/icons/Edit';
 import Home from '@material-ui/icons/Home';
 import { Link} from 'react-router-dom';
 import swal from 'sweetalert';
@@ -187,6 +189,11 @@ function MiniDrawer(props) {
             <ListItemText primary={translate('home')}/>
           </ListItem>
 
+          <ListItem button component={Link} to='/most-commented'>
+            <ListItemIcon><MostTalked/></ListItemIcon>
+            <ListItemText primary={translate('mostTalked')}/>
+          </ListItem>
+
           <ListItem button component={Link} to='/login'>
             <ListItemIcon><Login/></ListItemIcon>
             <ListItemText primary={translate('login')}/>
@@ -207,6 +214,11 @@ function MiniDrawer(props) {
           <ListItem button component={Link} to='/my-post'>
             <ListItemIcon><MyPost/></ListItemIcon>
             <ListItemText primary={translate('myPosts')}/>
+          </ListItem>
+
+          <ListItem button component={Link} to='/editors-post'>
+            <ListItemIcon><EditorsPostIcon/></ListItemIcon>
+            <ListItemText primary={translate('editorPost')}/>
           </ListItem>
 
           <ListItem button component={Link} to='/create-post'>

@@ -30,6 +30,13 @@ export default {
        'selectLang' : 'Velg språk',
        'loginOk' : 'Vellykket innlogging',
        'loginFail' : 'Innlogging Feilet',
-       'checkCon' : 'Sjekk Internett-tilkoblingen din'
+       'checkCon' : 'Sjekk Internett-tilkoblingen din',
+       'mostTalked' : 'Mest snakket',
+       'editorPost' : 'Redaktør Post',
+       'selectTags' : 'Velg tagger',
+       'writeTags' : 'Eller skriv ned dine egne koder (bruk komma for å skille)',
+       'makeEditor' : 'Lag redaktør for dette innlegget (Bruker-IDer, bruk komma for å skille)',
+       'makeEditorLabel' : 'Lag redaktør',
+       'newTags' : 'Nye tagger'    
    }
 }
