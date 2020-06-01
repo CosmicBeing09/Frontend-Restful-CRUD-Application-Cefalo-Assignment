@@ -54,7 +54,8 @@ class EditPost extends Component {
       body: "start here!",
       minDate: new Date(),
       publishDate: new Date(),
-      draftChecked: false
+      draftChecked: false,
+      version : 0
     }
     this.postData = this.postData.bind(this);
   }
@@ -79,6 +80,7 @@ class EditPost extends Component {
           this.setState({ body });
          // this.setState({publishDate : post.publishDate});
           this.setState({draftChecked : post.isDrafted});
+          this.setState({version : post.version});
 
         }).catch(err => {
           swal({
@@ -115,6 +117,7 @@ class EditPost extends Component {
 
   async postData(event) {
     const data = {
+      "version" : this.state.version,
       "id": this.props.location.state.id,
       "title": this.state.title,
       "body": this.state.body,
@@ -128,6 +131,7 @@ class EditPost extends Component {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'If-Match' : `"`+this.state.version+`"`,
         'Authorization': 'Bearer ' + localStorage.getItem('token')
       },
       body: JSON.stringify(data)
@@ -138,7 +142,12 @@ class EditPost extends Component {
           text: "Story Updated Successfully!!!",
           icon: "success",
           button: "Ok",
-        }).then(() => window.location.replace('/my-post'));
+        }).then(() => {
+          if(this.props.location.state.page === "myPostPage")
+          window.location.replace('/my-post')
+          else
+          window.location.replace('/editors-post')
+        });
       }
 
       else {

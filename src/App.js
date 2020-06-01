@@ -8,6 +8,10 @@ import Register from './components/register/Register';
 import MyPost from './components/my_post/MyPost';
 import EditPost from './components/edit_post/EditPost';
 import CreatePost from './components/create_post/CreatePost';
+import SinglePost from './components/single_post/SinglePost';
+import TagPost from './components/tag_posts/TagPost';
+import MostCommented from './components/most_commented/MostCommented';
+import EditorsPost from './components/editors_post/EditorsPost';
 import {I18Provider,LOCALES} from './i18n'; 
 import {connect} from 'react-redux';
 
@@ -27,6 +31,10 @@ function App(props) {
        <Route path = "/my-post" component={MyPost}/>
        <Route path = "/create-post" component={CreatePost}/>
        <Route path = "/edit-post" component={EditPost}/>
+       <Route path = "/single-post" component={SinglePost}/>
+       <Route path = "/tag-post" component={TagPost}/>
+       <Route path = "/most-commented" component={MostCommented}/>
+       <Route path = "/editors-post" component={EditorsPost}/>
        <Route component={Home}/>
      </Switch>
      </BrowserRouter> 

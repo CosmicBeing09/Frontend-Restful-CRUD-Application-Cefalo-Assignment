@@ -68,7 +68,8 @@ class MyPost extends Component{
         console.log(postId);
        this.props.history.push({
            pathname : '/edit-post',
-           state : {id : postId}
+           state : {id : postId,
+                    page : "myPostPage"}
         });
     }
 

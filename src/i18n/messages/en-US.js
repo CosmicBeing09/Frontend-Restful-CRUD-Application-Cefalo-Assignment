@@ -27,6 +27,16 @@ export default {
        'editStory' : 'Edit Post',
        'delete' : 'Delete',
        'update' : 'Update',
-       'selectLang' : 'Select Language'
+       'selectLang' : 'Select Language',
+       'loginOk' : 'Login Successful',
+       'loginFail' : 'Login Failed',
+       'checkCon' : 'Check Your Internet Connection',
+       'mostTalked' : 'Most Talked',
+       'editorPost' : 'Editor Post',
+       'selectTags' : 'Select Tags',
+       'writeTags' : 'Or, Write down your own tags (use comma to seperate)',
+       'makeEditor' : 'Make editor of this post (User IDs, use comma to seperate)',
+       'makeEditorLabel' : 'Make Editor',
+       'newTags' : 'New Tags'
    }
 }
